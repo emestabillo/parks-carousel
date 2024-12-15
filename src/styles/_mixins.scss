@@ -1,0 +1,24 @@
+$media: (
+  //500px:
+  xs: 31.25em,
+  //768px:
+  sm: 48em,
+  //1024:
+  md: 64em,
+  //1200:
+  lg: 75em,
+  //1440:
+  xl: 87.5em,
+  //1920:
+  2xl: 120em
+);
+
+@mixin breakpoint($breakpoint) {
+  @each $breakpoints, $size in $media {
+    @if $breakpoint==$breakpoints {
+      @media screen and (min-width: $size) {
+        @content;
+      }
+    }
+  }
+}

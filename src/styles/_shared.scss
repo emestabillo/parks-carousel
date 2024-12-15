@@ -1,0 +1,55 @@
+@use "./mixins" as mixin;
+
+//SHARED and UTILITY CLASSES//
+.container {
+  --width: 80%;
+  width: min(var(--width), 69.375rem); //110px
+  margin: 0 auto;
+
+  @include mixin.breakpoint(sm) {
+    --width: 90%;
+  }
+}
+
+.screenReaderOnly {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+// .top-spacing {
+//   padding-top: var(--top-spacing);
+// }
+
+// .bottom-spacing {
+//   padding-bottom: var(--bottom-spacing);
+// }
+
+// .shortHeading {
+//   max-width: 8ch;
+// }
+
+// .mediumHeading {
+//   max-width: 10ch;
+// }
+
+// .decorative-line {
+//   position: relative;
+
+//   &::before {
+//     background-color: var(--clr-light-gray);
+//     position: absolute;
+//     content: "";
+//     height: 1px;
+//     width: rem(65px);
+//   }
+// }
+
+// .overflow-hidden {
+//   overflow: hidden;
+// }

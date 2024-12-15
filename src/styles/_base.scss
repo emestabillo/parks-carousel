@@ -1,0 +1,82 @@
+// @use "../../styles/abstracts/index" as *;
+
+:root {
+  //Colors
+  --clr-dark-blue: hsl(220, 14%, 12%); //#1B1D23
+  --clr-dark-gray: hsl(226, 6%, 40%); //#60636D
+  --clr-medium-gray: hsl(223, 7%, 53%); //#7D828F
+  --clr-light-gray: hsl(225, 17%, 82%); //#C8CCD8
+  --clr-very-light-gray: hsl(230, 21%, 95%); //EEEFF4
+  --clr-red: hsl(0, 68%, 61%); //#DF5656
+  --clr-white: hsl(0, 0%, 100%);
+
+  --transition: 0.2s ease;
+
+  // --top-spacing: #{rem(36px)};
+  // --bottom-spacing: #{rem(36px)};
+
+  // @include breakpoint(sm) {
+  //   --top-spacing: #{rem(100px)};
+  //   --bottom-spacing: #{rem(100px)};
+  // }
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+  font-family: var(--ff-spartan);
+  line-height: 1.6;
+  color: var(--clr-dark-gray);
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a,
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
