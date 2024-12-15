@@ -21,10 +21,14 @@ function Carousel() {
     setActiveSlideIndex(newActiveSlide);
   };
 
+  const navigateToSlide = (activeSlideIndex) => {
+    setActiveSlideIndex(activeSlideIndex);
+  };
+
   return (
     <section>
       <div className="container">
-        <h2 className="screenReaderOnly">Disney World Parks</h2>
+        <h2 className="">Disney World Parks</h2>
         <div className={styles.carouselWrapper}>
           <div
             className={styles.slidesContainer}
@@ -59,12 +63,22 @@ function Carousel() {
               className={`${styles.pagingButton} ${styles.nextButton}`}
               onClick={nextSlide}
             >
-              {/* <svg viewBox="0 0 24 24">
-                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-              </svg> */}
               Next
               <img src={arrowNext} />
             </button>
+          </div>
+          <div className={styles.pagingDotsContainer}>
+            {parksData.map((park, index) => {
+              return (
+                <button
+                  key={index}
+                  className={`${
+                    index === activeSlideIndex && styles.activePagingDot
+                  } ${styles.pagingDots}`}
+                  onClick={() => navigateToSlide(index)}
+                ></button>
+              );
+            })}
           </div>
         </div>
       </div>
