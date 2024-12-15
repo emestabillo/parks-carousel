@@ -1,11 +1,12 @@
 import { parksData } from "../../data/parks";
 import styles from "./Carousel.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import arrowPrevious from "../../../src/assets/icons/arrow-previous.svg";
 import arrowNext from "../../../src/assets/icons/arrow-next.svg";
 
 function Carousel() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const previousSlide = () => {
     const isFirstSlide = activeSlideIndex === 0;
@@ -25,11 +26,26 @@ function Carousel() {
     setActiveSlideIndex(activeSlideIndex);
   };
 
+  useEffect(() => {
+    let intervalId;
+    if (!isHovered) {
+      intervalId = setInterval(() => {
+        nextSlide();
+      }, 3000);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [activeSlideIndex, isHovered]);
+
   return (
     <section>
       <div className="container">
         <h2 className="">Disney World Parks</h2>
-        <div className={styles.carouselWrapper}>
+        <div
+          className={styles.carouselWrapper}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div
             className={styles.slidesContainer}
             style={{ transform: `translateX(-${activeSlideIndex * 100}%)` }}
