@@ -1,4 +1,4 @@
-// @use "../../styles/abstracts/index" as *;
+@use "./mixins" as mixin;
 
 :root {
   //Colors
@@ -11,14 +11,6 @@
   --clr-white: hsl(0, 0%, 100%);
 
   --transition: 0.2s ease;
-
-  // --top-spacing: #{rem(36px)};
-  // --bottom-spacing: #{rem(36px)};
-
-  // @include breakpoint(sm) {
-  //   --top-spacing: #{rem(100px)};
-  //   --bottom-spacing: #{rem(100px)};
-  // }
 }
 
 html,
@@ -79,4 +71,20 @@ li {
 
 a {
   text-decoration: none;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h3 {
+  font-size: 3rem;
+
+  @include mixin.breakpoint(sm) {
+    font-size: 5rem;
+  }
 }

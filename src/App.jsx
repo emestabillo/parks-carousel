@@ -4,7 +4,7 @@ import Carousel from "./components/carousel/Carousel";
 function App() {
   return (
     <main>
-      <h1>Disney World Destinations</h1>
+      <h1 className="container">Disney World Destinations</h1>
       <Carousel />
     </main>
   );
