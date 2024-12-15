@@ -21,7 +21,7 @@ body {
 
 body {
   text-rendering: optimizeSpeed;
-  font-family: var(--ff-spartan);
+  font-family: var(--ff-roboto);
   line-height: 1.6;
   color: var(--clr-dark-gray);
 }
@@ -79,12 +79,4 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-h3 {
-  font-size: 3rem;
-
-  @include mixin.breakpoint(sm) {
-    font-size: 5rem;
-  }
 }
