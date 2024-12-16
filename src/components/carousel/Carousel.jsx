@@ -30,7 +30,7 @@ function Carousel() {
     if (!isHovered) {
       intervalId = setInterval(() => {
         nextSlide();
-      }, 5000);
+      }, 10000);
     }
 
     return () => clearInterval(intervalId);

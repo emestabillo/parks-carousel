@@ -12,14 +12,14 @@ function Slide({ headline, link, src, index, activeSlideIndex }) {
     if (index === activeSlideIndex) {
       gsap.fromTo(
         textContainerRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1 }
+        { y: 20, autoAlpha: 0 },
+        { y: 0, duration: 1, autoAlpha: 1, delay: 0.5, ease: "power3.out" }
       );
       gsap.fromTo(
         buttonRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8 },
-        ">-.7"
+        { y: 20, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+        ">-.8"
       );
     }
   }, [index, activeSlideIndex]);
@@ -34,7 +34,12 @@ function Slide({ headline, link, src, index, activeSlideIndex }) {
         <h3 className={styles.headline} ref={textContainerRef}>
           {headline}
         </h3>
-        <Button href={link} target="_blank" ref={buttonRef}>
+        <Button
+          href={link}
+          target="_blank"
+          ref={buttonRef}
+          className={styles.slideLinkButton}
+        >
           learn more
         </Button>
       </div>
