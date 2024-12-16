@@ -1,14 +1,20 @@
 @use "../../styles/index" as *;
+@use "../../styles/mixins" as mixin;
 
 .carouselWrapper {
   overflow: hidden;
   position: relative;
 }
 
+.sectionHeading {
+  color: var(--clr-dark-blue);
+  text-align: center;
+}
+
 .slidesContainer {
   position: relative;
   display: flex;
-  height: 600px;
+  height: 37.5rem; //600px
   width: 100%;
   transition: transform 0.3s ease-in-out;
 }
@@ -36,12 +42,17 @@
   z-index: 2;
 }
 
-.headline {
+.slideHeadline {
   color: var(--clr-white);
+  font-size: 3rem;
   line-height: 1;
   max-width: 10ch;
   padding-bottom: 1.5rem;
   visibility: hidden;
+
+  @include mixin.breakpoint(sm) {
+    font-size: 5rem;
+  }
 }
 
 .slideLinkButton {
@@ -62,8 +73,8 @@
   img {
     height: 100%;
     object-fit: cover;
-    width: 100%;
     object-position: top center;
+    width: 100%;
   }
 }
 
@@ -75,7 +86,6 @@
 
   svg {
     height: 2rem;
-    transition: inherit;
   }
 
   &:hover,
@@ -86,7 +96,7 @@
 
 .controls {
   display: flex;
-  gap: 0.625rem; //10px
+  gap: 0.625rem;
   align-items: center;
   justify-content: center;
   padding-inline: 5%;
@@ -108,10 +118,9 @@
   position: relative;
   display: grid;
   place-items: center;
-  margin: 0;
   transition: var(--transition);
   z-index: 2;
-  counter-increment: step-counter;
+  counter-increment: slide-counter;
   position: relative;
 
   &:hover {
@@ -119,7 +128,7 @@
   }
 
   &::before {
-    content: counter(step-counter);
+    content: counter(slide-counter);
     font-size: 0.875rem;
     line-height: 1;
   }

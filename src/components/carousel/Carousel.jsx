@@ -1,6 +1,6 @@
 import { parksData } from "../../data/parks";
 import styles from "./Carousel.module.scss";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Slide from "./Slide";
 
 function Carousel() {
@@ -10,21 +10,25 @@ function Carousel() {
   const previousSlide = () => {
     const isFirstSlide = activeSlideIndex === 0;
     const newActiveSlide = isFirstSlide
-      ? parksData.length - 1
-      : activeSlideIndex - 1;
+      ? parksData.length - 1 // If it's the first slide, go to the last slide
+      : activeSlideIndex - 1; // Otherwise, go to the previous slide
     setActiveSlideIndex(newActiveSlide);
   };
 
   const nextSlide = () => {
     const isLastSlide = activeSlideIndex === parksData.length - 1;
-    const newActiveSlide = isLastSlide ? 0 : activeSlideIndex + 1;
+    const newActiveSlide = isLastSlide
+      ? 0 // If it's the last slide, go back to the first slide
+      : activeSlideIndex + 1; // Otherwise, go to the next slide
     setActiveSlideIndex(newActiveSlide);
   };
 
+  // Navigate to a specific slide
   const navigateToSlide = (activeSlideIndex) => {
     setActiveSlideIndex(activeSlideIndex);
   };
 
+  // Interval to automatically move to the next slide every 10 seconds
   useEffect(() => {
     let intervalId;
     if (!isHovered) {
@@ -33,31 +37,20 @@ function Carousel() {
       }, 10000);
     }
 
+    // Clean up the interval when the component unmounts or dependencies change
     return () => clearInterval(intervalId);
   }, [activeSlideIndex, isHovered]);
-
-  const slidesContainerRef = useRef(null);
-
-  // const focusActiveSlide = () => {
-  //   const activeSlide = slidesContainerRef.current.children[activeSlideIndex];
-  //   activeSlide.focus();
-  // };
-
-  // useEffect(() => {
-  //   focusActiveSlide();
-  // }, [activeSlideIndex]);
 
   return (
     <section>
       <div className="container">
-        <h2 className="">Disney World Parks</h2>
+        <h2 className={styles.sectionHeading}>Disney World Parks</h2>
         <div
           className={styles.carouselWrapper}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={() => setIsHovered(true)} // Pause auto-sliding on hover
+          onMouseLeave={() => setIsHovered(false)} // Resume auto-sliding when not hovering
         >
           <div
-            ref={slidesContainerRef}
             className={styles.slidesContainer}
             style={{ transform: `translateX(-${activeSlideIndex * 100}%)` }}
           >
@@ -75,24 +68,32 @@ function Carousel() {
               );
             })}
           </div>
+
           <div className={styles.controls}>
+            {/* Previous slide button */}
             <button className={styles.pagingButton} onClick={previousSlide}>
               <span className="screenReaderOnly">previous slide</span>
               <svg viewBox="0 0 24 24" fill="#FFF" aria-hidden="true">
                 <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
               </svg>
             </button>
+
+            {/* Paging dots */}
             {parksData.map((_, index) => {
               return (
                 <button
                   key={index}
-                  className={`${
-                    index === activeSlideIndex && styles.activePagingDot
-                  } ${styles.pagingDots}`}
+                  className={`${styles.pagingDots} ${
+                    index === activeSlideIndex ? styles.activePagingDot : ""
+                  }`}
                   onClick={() => navigateToSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                  aria-current={index === activeSlideIndex ? "true" : undefined}
                 ></button>
               );
             })}
+
+            {/* Next slide button */}
             <button className={styles.pagingButton} onClick={nextSlide}>
               <span className="screenReaderOnly">next slide</span>
               <svg viewBox="0 0 24 24" fill="#FFF" aria-hidden="true">

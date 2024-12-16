@@ -6,32 +6,33 @@ import Button from "../Button/Button";
 function Slide({ headline, link, src, index, activeSlideIndex }) {
   const textContainerRef = useRef(null);
   const buttonRef = useRef(null);
-  const isActive = index === activeSlideIndex;
 
   useEffect(() => {
     if (index === activeSlideIndex) {
-      gsap.fromTo(
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.fromTo(
         textContainerRef.current,
         { y: 20, autoAlpha: 0 },
-        { y: 0, duration: 1, autoAlpha: 1, delay: 0.5, ease: "power3.out" }
-      );
-      gsap.fromTo(
+        { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 }
+      ).fromTo(
         buttonRef.current,
         { y: 20, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
-        ">-.8"
+        { y: 0, autoAlpha: 1, duration: 0.6 },
+        ">-0.8"
       );
+
+      return () => tl.kill(); // Kill animation when the component unmounts or re-renders
     }
   }, [index, activeSlideIndex]);
+
   return (
     <div
-      key={headline}
       className={styles.slide}
       aria-hidden={index !== activeSlideIndex}
-      tabIndex={isActive ? -1 : undefined}
+      tabIndex={index === activeSlideIndex ? -1 : undefined}
     >
       <div className={styles.textContainer}>
-        <h3 className={styles.headline} ref={textContainerRef}>
+        <h3 className={styles.slideHeadline} ref={textContainerRef}>
           {headline}
         </h3>
         <Button
