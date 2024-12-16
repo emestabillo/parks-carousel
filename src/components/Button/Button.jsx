@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import styles from "./Button.module.scss";
 
 function Button({ href, children, className = "", ...props }) {

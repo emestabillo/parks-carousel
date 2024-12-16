@@ -1,7 +1,7 @@
 import { parksData } from "../../data/parks";
 import styles from "./Carousel.module.scss";
-import { useState, useEffect } from "react";
-import Button from "../Button/Button";
+import { useState, useEffect, useRef } from "react";
+import Slide from "./Slide";
 
 function Carousel() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -30,11 +30,22 @@ function Carousel() {
     if (!isHovered) {
       intervalId = setInterval(() => {
         nextSlide();
-      }, 10000);
+      }, 5000);
     }
 
     return () => clearInterval(intervalId);
   }, [activeSlideIndex, isHovered]);
+
+  const slidesContainerRef = useRef(null);
+
+  // const focusActiveSlide = () => {
+  //   const activeSlide = slidesContainerRef.current.children[activeSlideIndex];
+  //   activeSlide.focus();
+  // };
+
+  // useEffect(() => {
+  //   focusActiveSlide();
+  // }, [activeSlideIndex]);
 
   return (
     <section>
@@ -46,27 +57,25 @@ function Carousel() {
           onMouseLeave={() => setIsHovered(false)}
         >
           <div
+            ref={slidesContainerRef}
             className={styles.slidesContainer}
             style={{ transform: `translateX(-${activeSlideIndex * 100}%)` }}
           >
-            {parksData.map((park) => {
+            {parksData.map((park, index) => {
               const { headline, src, link } = park;
               return (
-                <div key={headline} className={styles.slide}>
-                  <div className={styles.textContainer}>
-                    <h3 className={styles.headline}>{headline}</h3>
-                    <Button href={link} target="_blank">
-                      learn more
-                    </Button>
-                  </div>
-                  <div className={styles.imageContainer}>
-                    <img src={src} alt="" />
-                  </div>
-                </div>
+                <Slide
+                  key={headline}
+                  headline={headline}
+                  link={link}
+                  src={src}
+                  index={index}
+                  activeSlideIndex={activeSlideIndex}
+                />
               );
             })}
           </div>
-          <div className={styles.pagingContainer}>
+          <div className={styles.controls}>
             <button className={styles.pagingButton} onClick={previousSlide}>
               <span className="screenReaderOnly">previous slide</span>
               <svg viewBox="0 0 24 24" fill="#FFF" aria-hidden="true">
