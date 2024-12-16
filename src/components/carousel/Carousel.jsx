@@ -1,8 +1,7 @@
 import { parksData } from "../../data/parks";
 import styles from "./Carousel.module.scss";
 import { useState, useEffect } from "react";
-import arrowPrevious from "../../../src/assets/icons/arrow-previous.svg";
-import arrowNext from "../../../src/assets/icons/arrow-next.svg";
+import Button from "../Button/Button";
 
 function Carousel() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -56,9 +55,9 @@ function Carousel() {
                 <div key={headline} className={styles.slide}>
                   <div className={styles.textContainer}>
                     <h3 className={styles.headline}>{headline}</h3>
-                    <a href={link} target="_blank" className={styles.link}>
+                    <Button href={link} target="_blank">
                       learn more
-                    </a>
+                    </Button>
                   </div>
                   <div className={styles.imageContainer}>
                     <img src={src} alt="" />
@@ -67,24 +66,14 @@ function Carousel() {
               );
             })}
           </div>
-          <div className={styles.pagingArrows}>
-            <button
-              className={`${styles.pagingButton} ${styles.previousButton}`}
-              onClick={previousSlide}
-            >
-              <img src={arrowPrevious} />
-              Prev
+          <div className={styles.pagingContainer}>
+            <button className={styles.pagingButton} onClick={previousSlide}>
+              <span className="screenReaderOnly">previous slide</span>
+              <svg viewBox="0 0 24 24" fill="#FFF" aria-hidden="true">
+                <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+              </svg>
             </button>
-            <button
-              className={`${styles.pagingButton} ${styles.nextButton}`}
-              onClick={nextSlide}
-            >
-              Next
-              <img src={arrowNext} />
-            </button>
-          </div>
-          <div className={styles.pagingDotsContainer}>
-            {parksData.map((park, index) => {
+            {parksData.map((_, index) => {
               return (
                 <button
                   key={index}
@@ -95,6 +84,12 @@ function Carousel() {
                 ></button>
               );
             })}
+            <button className={styles.pagingButton} onClick={nextSlide}>
+              <span className="screenReaderOnly">next slide</span>
+              <svg viewBox="0 0 24 24" fill="#FFF" aria-hidden="true">
+                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+              </svg>
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,17 @@
+.button {
+  background-color: transparent;
+  border: 1px solid var(--clr-white);
+  border-radius: 3rem;
+  color: var(--clr-white);
+  font-size: 0.875rem;
+  line-height: 1;
+  padding: 0.75rem 1.25rem;
+  text-transform: capitalize;
+  transition: var(--transition);
+  width: max-content;
+
+  &:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-dark-blue);
+  }
+}

@@ -2,7 +2,7 @@ export const parksData = [
   {
     headline: "Magic Kingdom",
     link: "https://disneyworld.disney.go.com/destinations/magic-kingdom/",
-    src: "https://images.unsplash.com/photo-1632708428395-90f8b5639be3?q=80&w=1953&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://images.unsplash.com/photo-1634221558053-3a617b5201d9?q=80&w=1748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     headline: "EPCOT",

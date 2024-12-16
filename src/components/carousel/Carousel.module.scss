@@ -1,3 +1,5 @@
+@use "../../styles/index" as *;
+
 .carouselWrapper {
   overflow: hidden;
   position: relative;
@@ -27,34 +29,27 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 100%;
-  padding-inline: 2rem;
+  padding-inline: 5%;
+  padding-top: 3rem;
   position: relative;
   z-index: 2;
 }
 
 .headline {
   color: var(--clr-white);
-  line-height: 1.1;
-}
-
-.link {
-  background-color: var(--clr-dark-blue);
-  color: var(--clr-white);
-  padding: 0.8rem 1rem;
-  text-transform: capitalize;
-  width: max-content;
+  line-height: 1;
+  max-width: 10ch;
+  padding-bottom: 1.5rem;
 }
 
 .imageContainer {
   position: relative;
 
   &::before {
-    background-color: #000;
+    background: rgba(57, 57, 57, 0.2);
     content: "";
     height: 100%;
-    opacity: 0.3;
     position: absolute;
     width: 100%;
   }
@@ -67,35 +62,43 @@
   }
 }
 
-.pagingArrows {
-  position: absolute;
-  top: 50%;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .pagingButton {
-}
-.previousButton {
-}
-.nextButton {
+  --border: transparent;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  transition: var(--transition);
+
+  svg {
+    height: 2rem;
+    transition: inherit;
+  }
+
+  &:hover {
+    --border: var(--clr-white);
+  }
 }
 
-.pagingDotsContainer {
+.pagingContainer {
   display: flex;
   gap: 0.625rem; //10px
+  align-items: center;
   justify-content: center;
+  padding-inline: 5%;
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   width: 100%;
+
+  @include breakpoint(sm) {
+    justify-content: flex-end;
+  }
 }
 
 .pagingDots {
   background-color: var(--clr-white);
-  // border-radius: 50%;
+  border-radius: 50%;
+  height: 1.5rem;
   opacity: 0.6;
-  padding: 0.2rem 0.375rem;
+  padding: 0.12rem 0.5rem;
   position: relative;
   display: grid;
   place-items: center;
@@ -111,6 +114,7 @@
 
   &::before {
     content: counter(step-counter);
+    font-size: 0.875rem;
     line-height: 1;
   }
 }
