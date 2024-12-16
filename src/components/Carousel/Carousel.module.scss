@@ -78,22 +78,6 @@
   }
 }
 
-.pagingButton {
-  --border: transparent;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  transition: var(--transition);
-
-  svg {
-    height: 2rem;
-  }
-
-  &:hover,
-  &:focus {
-    --border: var(--clr-white);
-  }
-}
-
 .controls {
   display: flex;
   gap: 0.625rem;
@@ -109,11 +93,27 @@
   }
 }
 
+.arrowButton {
+  --border: transparent;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  transition: var(--transition);
+
+  svg {
+    height: 2rem;
+  }
+
+  &:hover,
+  &:focus {
+    --border: var(--clr-white);
+  }
+}
+
 .pagingDots {
   background-color: var(--clr-white);
   border-radius: 50%;
   height: 1.5rem;
-  opacity: 0.6;
+  opacity: 0.5;
   padding: 0.12rem 0.5rem;
   position: relative;
   display: grid;

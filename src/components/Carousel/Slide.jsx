@@ -41,7 +41,7 @@ function Slide({ headline, link, src, index, activeSlideIndex }) {
           ref={buttonRef}
           className={styles.slideLinkButton}
         >
-          learn more
+          learn more<span className="screenReaderOnly">about {headline}</span>
         </Button>
       </div>
       <div className={styles.imageContainer}>
