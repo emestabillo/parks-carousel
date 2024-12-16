@@ -73,7 +73,8 @@
     transition: inherit;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     --border: var(--clr-white);
   }
 }
